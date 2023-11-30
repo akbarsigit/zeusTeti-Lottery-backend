@@ -37,7 +37,7 @@ const runtimer = async () => {
       // run function of getting the winner and open a new draw
       executeLotto();
       // reset the time
-      let drawreset = 300000;
+      let drawreset = 500000;
       storeTime(drawreset);
       timeleft = drawreset;
     } else {
@@ -133,9 +133,9 @@ function executeLotto() {
         // open new draw
         console.log("open");
         openLotto();
-      }, 60000);
-    }, 60000);
-  }, 60000);
+      }, 90000);
+    }, 90000);
+  }, 90000);
 }
 
 const port = process.env.PORT || 3001;

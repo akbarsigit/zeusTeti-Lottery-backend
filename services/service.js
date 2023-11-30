@@ -3,7 +3,7 @@ const ethers = require("ethers");
 const LotteryABI = require("./../lotteryABI.json");
 
 // smart contract address
-const lottery = "0x638036f578AaE372EdE3Bc5E21B799736fce6FAe";
+const lottery = "0x93167090E331CE524b056805d7468caEd394c407";
 const rpc = "https://rpc.ankr.com/polygon_mumbai";
 const provider = new ethers.providers.JsonRpcProvider(rpc);
 // my wallet prvate key
