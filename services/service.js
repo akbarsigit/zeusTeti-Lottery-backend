@@ -110,7 +110,35 @@ const countWinners = async () => {
     });
 };
 
+const currentLotto = async () => {
+  const output = await contract.currentLotteryId().catch((error) => {
+    console.log("error calling function");
+  });
+  const lottoId = output.toString();
+  return lottoId;
+};
+
+const getBalance = async () => {
+  const output = await contract.getBalance().catch((error) => {
+    console.log("error calling function");
+  });
+  const balance = output.toString();
+  return balance;
+};
+
+const getDrawJackpot = async () => {
+  const output = await contract.currentLotteryId().catch((error) => {
+    console.log("error calling function");
+  });
+  const lottoId = output.toString();
+  const lottodata = await contract.viewLottery(lottoId).catch((error) => {
+    console.log("error calling function");
+  });
+  return lottodata;
+};
+
 module.exports = {
+  currentLotto,
   getDrawTimer,
   storeTime,
   openLotto,
