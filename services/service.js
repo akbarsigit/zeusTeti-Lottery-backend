@@ -126,11 +126,14 @@ const getBalance = async () => {
   return balance;
 };
 
+// get draw info
 const getDrawJackpot = async () => {
+  // get the current draw
   const output = await contract.currentLotteryId().catch((error) => {
     console.log("error calling function");
   });
   const lottoId = output.toString();
+  // view the current draw info
   const lottodata = await contract.viewLottery(lottoId).catch((error) => {
     console.log("error calling function");
   });
