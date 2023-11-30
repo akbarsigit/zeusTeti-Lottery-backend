@@ -145,4 +145,6 @@ module.exports = {
   closeLotto,
   getLuckyNumbers,
   countWinners,
+  getBalance,
+  getDrawJackpot,
 };
