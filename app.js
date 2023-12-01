@@ -4,6 +4,8 @@ const dotenv = require("dotenv");
 const {
   currentLotto,
   getDrawTimer,
+  getLotteryInfo,
+  viewTickets,
   storeTime,
   openLotto,
   closeLotto,
@@ -37,7 +39,7 @@ const runtimer = async () => {
       // run function of getting the winner and open a new draw
       executeLotto();
       // reset the time
-      let drawreset = 500000;
+      let drawreset = 720000;
       storeTime(drawreset);
       timeleft = drawreset;
     } else {
@@ -117,6 +119,42 @@ app.post("/getbalance", function (req, res) {
   });
 });
 
+app.post("/viewlotto", function (req, res) {
+  const lottoId = req.body.lottoId;
+  return new Promise((resolve, reject) => {
+    getLotteryInfo(lottoId)
+      .then((response) => {
+        res.statusCode = 200;
+        res.setHeader("Content-Type", "application/json");
+        res.setHeader("Cache-Control", "max-age=180000");
+        res.end(JSON.stringify(response));
+        resolve();
+      })
+      .catch((error) => {
+        res.json(error);
+        res.status(405).end();
+      });
+  });
+});
+
+app.post("/viewtickets", function (req, res) {
+  const ticketId = req.body.ticketId;
+  return new Promise((resolve, reject) => {
+    viewTickets(ticketId)
+      .then((response) => {
+        res.statusCode = 200;
+        res.setHeader("Content-Type", "application/json");
+        res.setHeader("Cache-Control", "max-age=180000");
+        res.end(JSON.stringify(response));
+        resolve();
+      })
+      .catch((error) => {
+        res.json(error);
+        res.status(405).end();
+      });
+  });
+});
+
 // wait 60s for each function. Wain on the smartcontract
 function executeLotto() {
   console.log("closing draw");
@@ -133,9 +171,9 @@ function executeLotto() {
         // open new draw
         console.log("open");
         openLotto();
-      }, 90000);
-    }, 90000);
-  }, 90000);
+      }, 180000);
+    }, 180000);
+  }, 180000);
 }
 
 const port = process.env.PORT || 3001;

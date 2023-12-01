@@ -3,7 +3,7 @@ const ethers = require("ethers");
 const LotteryABI = require("./../lotteryABI.json");
 
 // smart contract address
-const lottery = "0x93167090E331CE524b056805d7468caEd394c407";
+const lottery = "0x28F32C4e0B1B947939a6b5FDC9db00c83A6fC113";
 const rpc = "https://rpc.ankr.com/polygon_mumbai";
 const provider = new ethers.providers.JsonRpcProvider(rpc);
 // my wallet prvate key
@@ -140,9 +140,25 @@ const getDrawJackpot = async () => {
   return lottodata;
 };
 
+const getLotteryInfo = async (lottoId) => {
+  const lottodata = await contract.viewLottery(lottoId).catch((error) => {
+    console.log("error calling function 10");
+  });
+  return lottodata;
+};
+
+const viewTickets = async (ticketId) => {
+  const ticketdata = await contract.viewTickets(ticketId).catch((error) => {
+    console.log("error calling function 11");
+  });
+  return ticketdata;
+};
+
 module.exports = {
   currentLotto,
   getDrawTimer,
+  getLotteryInfo,
+  viewTickets,
   storeTime,
   openLotto,
   closeLotto,
